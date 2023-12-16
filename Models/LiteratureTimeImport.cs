@@ -1,4 +1,4 @@
-namespace Translate;
+namespace Translate.Models;
 
 public record LiteratureTimeImport(
     string Time,
