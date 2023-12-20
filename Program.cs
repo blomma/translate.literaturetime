@@ -27,7 +27,11 @@ var titlesExclusion = new List<string>
     "The Great Doctrines of the Bible",
     "A Treatise on Good Works",
     "The American Woman's Home",
-    "Works of Martin Luther"
+    "Works of Martin Luther",
+    "The King James Bible, Complete",
+    "Archæology and the Bible",
+    "The Great Painters' Gospel",
+    "The Kingdom of Promise and Prophecy"
 };
 
 var authorExclusion = new List<string>
