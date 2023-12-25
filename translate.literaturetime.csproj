@@ -6,8 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <AnalysisLevel>latest-Recommended</AnalysisLevel>
-        <AnalysisLevelPerformance>latest-All</AnalysisLevelPerformance>
+        <AnalysisLevel>latest-All</AnalysisLevel>
     </PropertyGroup>
 
 </Project>

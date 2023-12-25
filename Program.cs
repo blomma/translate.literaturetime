@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -964,10 +964,13 @@ List<LiteratureTimeImport> literatureTimeImports = [];
 foreach (var file in files)
 {
     if (
-        file.Contains("fileDirectoryDone")
-        || file.Contains("timePhrasesSuperGenericOneOf")
-        || file.Contains("timePhrasesGenericOneOf")
-        || file.Contains("timePhrasesOneOf")
+        file.Contains("fileDirectoryDone", StringComparison.InvariantCultureIgnoreCase)
+        || file.Contains(
+            "timePhrasesSuperGenericOneOf",
+            StringComparison.InvariantCultureIgnoreCase
+        )
+        || file.Contains("timePhrasesGenericOneOf", StringComparison.InvariantCultureIgnoreCase)
+        || file.Contains("timePhrasesOneOf", StringComparison.InvariantCultureIgnoreCase)
     )
     {
         continue;
@@ -1017,7 +1020,7 @@ foreach (
     ) in literatureTimeImportsFiltered
 )
 {
-    var trimmedQuote = quote.Replace("\n", " ");
+    var trimmedQuote = quote.Replace("\n", " ", StringComparison.InvariantCultureIgnoreCase);
     var hash = GetHash(
         sha256Hash,
         $"{time}{timeQuote}{trimmedQuote}{title}{author}{gutenbergReference}"
@@ -1044,7 +1047,10 @@ foreach (
 }
 
 var literatureTimesJson = JsonSerializer.Serialize(literatureTimes, jsonSerializerOptions);
-File.WriteAllText("../data.literaturetime/src/Data.LiteratureTime.Worker/Data/literatureTimes.json", literatureTimesJson);
+File.WriteAllText(
+    "../data.literaturetime/src/Data.LiteratureTime.Worker/Data/literatureTimes.json",
+    literatureTimesJson
+);
 
 static string GetHash(HashAlgorithm hashAlgorithm, string input)
 {
