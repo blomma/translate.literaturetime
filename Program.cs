@@ -925,7 +925,12 @@ var titlesExclusion = new List<string>
     "Woman in Sacred History",
     "Women in white raiment",
     "Works of Martin Luther",
-    "Young Folks' Bible in Words of Easy Reading"
+    "Young Folks' Bible in Words of Easy Reading",
+    "Systematic Theology (Volume 3 of 3)",
+    "Systematic Theology (Volume 2 of 3)",
+    "Systematic Theology (Volume 1 of 3)",
+    "Education",
+    "Armor and Arms"
 };
 
 var authorExclusion = new List<string>
@@ -971,17 +976,26 @@ foreach (var file in files)
         )
         || file.Contains("timePhrasesGenericOneOf", StringComparison.InvariantCultureIgnoreCase)
         || file.Contains("timePhrasesOneOf", StringComparison.InvariantCultureIgnoreCase)
+        || file.Contains("settings", StringComparison.InvariantCultureIgnoreCase)
     )
     {
         continue;
     }
 
     var content = File.ReadAllText(file);
-    var result = JsonSerializer.Deserialize<List<LiteratureTimeImport>>(content);
-
-    if (result != null)
+    try
     {
-        literatureTimeImports.AddRange(result);
+        var result = JsonSerializer.Deserialize<List<LiteratureTimeImport>>(content);
+
+        if (result != null)
+        {
+            literatureTimeImports.AddRange(result);
+        }
+    }
+    catch (Exception)
+    {
+        Console.WriteLine($"file:{file}");
+        throw;
     }
 }
 
@@ -1046,11 +1060,31 @@ foreach (
     );
 }
 
-var literatureTimesJson = JsonSerializer.Serialize(literatureTimes, jsonSerializerOptions);
-File.WriteAllText(
-    "../data.literaturetime/src/Data.LiteratureTime.Worker/Data/literatureTimes.json",
-    literatureTimesJson
+var startOfDay = DateTime.Now.Date;
+var endOfDay = startOfDay.Date.AddDays(1).AddTicks(-1);
+
+List<string> literatureTimesComplete = [];
+while (startOfDay < endOfDay)
+{
+    literatureTimesComplete.Add(startOfDay.ToString("HH:mm", CultureInfo.InvariantCulture));
+    startOfDay = startOfDay.AddMinutes(1);
+}
+
+var literatureTimesMissing = literatureTimesComplete
+    .Except(literatureTimes.Select(s => s.Time).Distinct())
+    .ToList();
+
+var literatureTimesMissingJson = JsonSerializer.Serialize(
+    literatureTimesMissing,
+    jsonSerializerOptions
 );
+File.WriteAllText(
+    "../translated.quotes.literaturetime/literatureTimesMissing.json",
+    literatureTimesMissingJson
+);
+
+var literatureTimesJson = JsonSerializer.Serialize(literatureTimes, jsonSerializerOptions);
+File.WriteAllText("../translated.quotes.literaturetime/literatureTimes.json", literatureTimesJson);
 
 static string GetHash(HashAlgorithm hashAlgorithm, string input)
 {
