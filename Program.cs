@@ -930,7 +930,9 @@ var titlesExclusion = new List<string>
     "Systematic Theology (Volume 2 of 3)",
     "Systematic Theology (Volume 1 of 3)",
     "Education",
-    "Armor and Arms"
+    "Armor and Arms",
+    "The Mormon Doctrine of Deity",
+    "The Fundamental Doctrines of the Christian faith"
 };
 
 var authorExclusion = new List<string>
