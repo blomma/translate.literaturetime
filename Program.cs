@@ -932,7 +932,12 @@ var titlesExclusion = new List<string>
     "Education",
     "Armor and Arms",
     "The Mormon Doctrine of Deity",
-    "The Fundamental Doctrines of the Christian faith"
+    "The Fundamental Doctrines of the Christian faith",
+    "The Finished Mystery",
+    "Life and Labors of Elder John Kline, the Martyr Missionary",
+    "The Bloody Theatre, or Martyrs Mirror of the Defenseless",
+    "The Guide to Reading",
+    "Lives of SS. Declan and Mochuda"
 };
 
 var authorExclusion = new List<string>
@@ -949,10 +954,41 @@ var authorExclusion = new List<string>
     "Benedict of Spinoza",
     "Alexander von Humboldt",
     "Augustus Hopkins Strong",
-    "Martin Luther"
+    "Martin Luther",
+    "Lewis Sperry Chafer",
+    "Osborne J. P. Widtsoe",
+    "Amos R. Wells",
+    "W. A. Spicer",
+    "Charles Ebert Orr",
+    "Uriah Smith",
+    "Thielem J. van Braght",
+    "Mary Wood-Allen",
+    "Samuel Willoughby Duffield",
+    "W. A. Spicer",
+    "Charles Ebert Orr",
+    "Josephine L. Baldwin",
+    "E. Raymond Hall",
+    "Max Heindel",
+    "James Walter Shepherd",
+    "John Nevins Andrews",
+    "Richard B. Westbrook",
+    "Edward Thurston Hiscox",
+    "Wolcott H. Littlejohn",
+    "James E. Talmage",
+    "Daniel W. Fisher",
+    "Oliver J. Thatcher",
+    "T. T. (Thomas Theodore) Martin",
+    "F. G. [Frederick George] Smith",
+    "George Elliott Howard",
+    "Orson F. Whitney",
+    "David O. McKay",
+    "John Morgan",
+    "Robert Lee Berry",
+    "John Dewey and James Hayden Tufts",
+    "Paramhansa Yogananda",
+    "Elwyn Allen Smith"
 };
 
-#pragma warning disable CA1869 // Cache and reuse 'JsonSerializerOptions' instances
 JsonSerializerOptions jsonSerializerOptions =
     new()
     {
@@ -960,7 +996,6 @@ JsonSerializerOptions jsonSerializerOptions =
         WriteIndented = true,
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
     };
-#pragma warning restore CA1869 // Cache and reuse 'JsonSerializerOptions' instances
 
 var files = Directory.EnumerateFiles(
     "../quotes.literaturetime",
