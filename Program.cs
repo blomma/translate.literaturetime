@@ -10,7 +10,7 @@ JsonSerializerOptions jsonSerializerOptions =
     {
         Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         WriteIndented = true,
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
     };
 
 var files = Directory.EnumerateFiles(
@@ -24,6 +24,8 @@ foreach (var file in files)
 {
     if (
         file.Contains("fileDirectoryDone", StringComparison.InvariantCultureIgnoreCase)
+        || file.Contains("fileDirectoryExcluded", StringComparison.InvariantCultureIgnoreCase)
+        || file.Contains("subjectHistogram", StringComparison.InvariantCultureIgnoreCase)
         || file.Contains(
             "timePhrasesSuperGenericOneOf",
             StringComparison.InvariantCultureIgnoreCase
