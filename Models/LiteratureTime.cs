@@ -1,6 +1,6 @@
-namespace Translate.Models;
+namespace translate.literaturetime.Models;
 
-public record LiteratureTime(
+internal sealed record LiteratureTime(
     string Time,
     string QuoteFirst,
     string QuoteTime,

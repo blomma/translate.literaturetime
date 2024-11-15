@@ -1,6 +1,7 @@
-namespace Translate.Models;
+namespace translate.literaturetime.Models;
 
-public record LiteratureTimeImport(
+#pragma warning disable CA1812
+internal sealed record LiteratureTimeImport(
     string Time,
     string TimeQuote,
     string Quote,
@@ -9,3 +10,4 @@ public record LiteratureTimeImport(
     string GutenbergReference,
     int MatchType
 );
+#pragma warning restore CA1812
