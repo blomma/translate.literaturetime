@@ -5,13 +5,12 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using translate.literaturetime.Models;
 
-JsonSerializerOptions jsonSerializerOptions =
-    new()
-    {
-        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-        WriteIndented = true,
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-    };
+JsonSerializerOptions jsonSerializerOptions = new()
+{
+    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+    WriteIndented = true,
+    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+};
 
 var files = Directory.EnumerateFiles(
     "../quotes.literaturetime",
@@ -137,6 +136,18 @@ File.WriteAllText(
 
 var literatureTimesJson = JsonSerializer.Serialize(literatureTimes, jsonSerializerOptions);
 File.WriteAllText("../translated.quotes.literaturetime/literatureTimes.json", literatureTimesJson);
+
+var groupedLiteratureTimes = literatureTimes.GroupBy(l => l.Time);
+foreach (var item in groupedLiteratureTimes)
+{
+    var timedLiteratureTimesJson = JsonSerializer.Serialize(item.ToList(), jsonSerializerOptions);
+    var time = item.Key.Replace(":", "_", StringComparison.InvariantCulture);
+
+    File.WriteAllText(
+        $"../literature.artsoftheinsane.com/quotes/{time}.json",
+        timedLiteratureTimesJson
+    );
+}
 
 static string GetHash(HashAlgorithm hashAlgorithm, string input)
 {
