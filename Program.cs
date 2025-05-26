@@ -63,9 +63,7 @@ List<LiteratureTimeImport> literatureTimeImportsFiltered = [];
 foreach (var item in lookup)
 {
     var quotes = new ReadOnlySpan<LiteratureTimeImport>([.. item]);
-#pragma warning disable CA5394
     quotes = quotes.Length >= 20 ? Random.Shared.GetItems(quotes, 20) : quotes;
-#pragma warning restore CA5394
     literatureTimeImportsFiltered.AddRange(quotes);
 }
 
@@ -74,14 +72,7 @@ Console.WriteLine($"Number of quotes: {literatureTimeImportsFiltered.Count}");
 List<LiteratureTime> literatureTimes = [];
 
 foreach (
-    var (
-        time,
-        timeQuote,
-        quote,
-        title,
-        author,
-        gutenbergReference
-    ) in literatureTimeImportsFiltered
+    var (time, timeQuote, quote, title, author, gutenbergReference) in literatureTimeImportsFiltered
 )
 {
     var trimmedQuote = quote.Replace("\n", " ", StringComparison.InvariantCultureIgnoreCase);
