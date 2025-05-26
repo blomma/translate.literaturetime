@@ -80,8 +80,7 @@ foreach (
         quote,
         title,
         author,
-        gutenbergReference,
-        matchType
+        gutenbergReference
     ) in literatureTimeImportsFiltered
 )
 {
@@ -105,7 +104,6 @@ foreach (
             title,
             author,
             gutenbergReference,
-            matchType,
             hash
         )
     );

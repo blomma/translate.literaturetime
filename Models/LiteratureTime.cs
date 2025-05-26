@@ -8,6 +8,5 @@ internal sealed record LiteratureTime(
     string Title,
     string Author,
     string GutenbergReference,
-    int MatchType,
     string Hash
 );
