@@ -133,7 +133,7 @@ foreach (var item in groupedLiteratureTimes)
     var time = item.Key.Replace(":", "_", StringComparison.InvariantCulture);
 
     File.WriteAllText(
-        $"../literature.artsoftheinsane.com/quotes/{time}.json",
+        $"../literature.artsoftheinsane.com/public/quotes/{time}.json",
         timedLiteratureTimesJson
     );
 }
