@@ -127,6 +127,17 @@ var literatureTimesJson = JsonSerializer.Serialize(literatureTimes, jsonSerializ
 File.WriteAllText("../translated.quotes.literaturetime/literatureTimes.json", literatureTimesJson);
 
 var groupedLiteratureTimes = literatureTimes.GroupBy(l => l.Time);
+
+if (Directory.Exists("../literature.artsoftheinsane.com/public/quotes/"))
+{
+    Directory.Delete("../literature.artsoftheinsane.com/public/quotes/", true);
+}
+
+if (!Directory.Exists("../literature.artsoftheinsane.com/public/quotes/"))
+{
+    Directory.CreateDirectory("../literature.artsoftheinsane.com/public/quotes");
+}
+
 foreach (var item in groupedLiteratureTimes)
 {
     var timedLiteratureTimesJson = JsonSerializer.Serialize(item.ToList(), jsonSerializerOptions);
