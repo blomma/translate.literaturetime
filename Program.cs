@@ -63,8 +63,9 @@ List<LiteratureTimeImport> literatureTimeImportsFiltered = [];
 foreach (var item in lookup)
 {
     var quotes = new ReadOnlySpan<LiteratureTimeImport>([.. item]);
-    quotes = quotes.Length >= 20 ? Random.Shared.GetItems(quotes, 20) : quotes;
-    literatureTimeImportsFiltered.AddRange(quotes);
+    literatureTimeImportsFiltered.AddRange(
+        quotes.Length >= 20 ? Random.Shared.GetItems(quotes, 20) : quotes
+    );
 }
 
 Console.WriteLine($"Number of quotes: {literatureTimeImportsFiltered.Count}");
